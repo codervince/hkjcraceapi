@@ -4,11 +4,8 @@ myApp.controller('AppCtrl', ['$scope', '$http', function($scope, $http) {
 
     var refresh = function(){
     	$http.get('/contactlist').success(function(response){
-            console.log(response);
+            //console.log(response);
             $scope.horces = response;
-	    	//console.log("I got the data I requested");
-	    	// $scope.contactlist = response;
-	    	// $scope.contact = "";
     	});
     };
 
