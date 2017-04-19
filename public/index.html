@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title></title>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container" ng-controller="AppCtrl">
+	<!--<h1>Horse Form Records (Recent 3 seasons) - AMAZING ALWAYS</h1>-->
+		<span ng-if="!horces">Loading...</span>
+		<table class="table" ng-if="horces">
+			<thead>
+				<tr>
+					<th>Place</th>
+					<th>jockeycode</th>
+					<th>trainercode</th>
+					<th>actualwt</th>
+					<th>declarhorsewt</th>
+					<th>lbw</th>
+					<th>runningposition</th>
+					<th>finishtime</th>
+					<th>winodds</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="horce in horces">
+					<td>{{horce.row.td.place}}</td>
+					<td>{{horce.row.td.jockeycode}}</td>
+					<td>{{horce.row.td.trainercode}}</td>
+					<td>{{horce.row.td.actualwt}}</td>
+					<td>{{horce.row.td.declarhorsewt}}</td>
+					<td>{{horce.row.td.lbw}}</td>
+					<td>{{horce.row.td.runningposition}}</td>
+					<td>{{horce.row.td.finishtime}}</td>
+					<td>{{horce.row.td.winodds}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script type="text/javascript" src="controllers/controller.js"></script>
+</body>
+</html>
