@@ -19,7 +19,9 @@ var user = new Schema({
         td:{
             place: String,
             jockeycode: { type: String, uppercase: true, trim: true },
+            jockeycodeurl: String,
             trainercode: { type: String, uppercase: true, trim: true},
+            trainercodeurl: String,
             actualwt: String,
             declarhorsewt: String,
             lbw: String,
@@ -32,7 +34,9 @@ var user = new Schema({
 //Global Variables
 var place,
     jockeycode,
+    jockeycodeurl,
     trainercode,
+    trainercodeurl,
     actualwt,
     declarhorsewt,
     lbw,
@@ -42,17 +46,17 @@ var place,
     user;
 
 
-var User =  mongoose.model('horces', user);
-app.get('/contactlist', function(req, res){
+var Horses =  mongoose.model('horses', user);
+app.get('/horselist', function(req, res){
     request('http://www.hkjc.com/english/racing/horse.asp?horseno=N432', function(err,resp, html){
         var $ = cheerio.load(html);
 
         var rowCount = $('.bigborder ').children().length;
 
-        User.find(function (err, users) {
+        Horses.find(function (err, users) {
             if(users.length > 0){
                 setTimeout(function() {
-                    User.find(function (err, users) {
+                    Horses.find(function (err, users) {
                         //console.log(users);
                         res.json(users)
                     })
@@ -62,19 +66,23 @@ app.get('/contactlist', function(req, res){
                 for(var i = 2; i<= rowCount; i++) {
                     place =  $('.bigborder').children().eq(i).children().eq(1).text();
                     jockeycode = $('.bigborder').children().eq(i).children().eq(10).text();
+                    jockeycodeurl = $('.bigborder').children().eq(i).children().eq(10).children().attr('href');
                     trainercode = $('.bigborder').children().eq(i).children().eq(9).text();
+                    trainercodeurl = $('.bigborder').children().eq(i).children().eq(9).children().attr('href');
                     actualwt = $('.bigborder').children().eq(i).children().eq(13).text();
                     declarhorsewt = $('.bigborder').children().eq(i).children().eq(16).text();
                     lbw = $('.bigborder').children().eq(i).children().eq(11).text();
                     runningposition = $('.bigborder').children().eq(i).children().eq(14).text();
                     finishtime = $('.bigborder').children().eq(i).children().eq(15).text();
                     winodds = $('.bigborder').children().eq(i).children().eq(12).text();
-                    user = new User({
+                    user = new Horses({
                         row:{
                             td:{
                                 place: place,
                                 jockeycode: jockeycode,
+                                jockeycodeurl: jockeycodeurl,
                                 trainercode: trainercode,
+                                trainercodeurl: trainercodeurl,
                                 actualwt: actualwt,
                                 declarhorsewt: declarhorsewt,
                                 lbw: lbw,
@@ -88,10 +96,9 @@ app.get('/contactlist', function(req, res){
                         if(err) throw  err;
 
                     });
-
                 }
                 setTimeout(function() {
-                    User.find(function (err, users) {
+                    Horses.find(function (err, users) {
                         //console.log(users);
                         res.json(users)
                     })
@@ -100,25 +107,14 @@ app.get('/contactlist', function(req, res){
 
         });
 
-
-
         // var page =  $('.bigborder').children().eq(1).text();
-
 
         //console.log(season);
 
-
-
-
     });
-
-
-
-
-
 
 });
 
 
 app.listen(process.env.PORT || 8000);
-console.log('sever running on port 8000');
+//console.log('sever running on port 8000');

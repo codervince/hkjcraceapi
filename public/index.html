@@ -16,21 +16,21 @@
 			<thead>
 				<tr>
 					<th>Place</th>
-					<th>jockeycode</th>
-					<th>trainercode</th>
-					<th>actualwt</th>
-					<th>declarhorsewt</th>
+					<th>Jockey code</th>
+					<th>Trainer code</th>
+					<th>Actualwt</th>
+					<th>Declarhorsewt</th>
 					<th>lbw</th>
-					<th>runningposition</th>
-					<th>finishtime</th>
-					<th>winodds</th>
+					<th>Running position</th>
+					<th>Finish time</th>
+					<th>Win odds</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="horce in horces">
 					<td>{{horce.row.td.place}}</td>
-					<td>{{horce.row.td.jockeycode}}</td>
-					<td>{{horce.row.td.trainercode}}</td>
+					<td><a href="{{horce.row.td.jockeycodeurl}}">{{horce.row.td.jockeycode}}</a></td>
+					<td><a href="{{horce.row.td.trainercodeurl}}">{{horce.row.td.trainercode}}</a></td>
 					<td>{{horce.row.td.actualwt}}</td>
 					<td>{{horce.row.td.declarhorsewt}}</td>
 					<td>{{horce.row.td.lbw}}</td>
