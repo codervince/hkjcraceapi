@@ -11,15 +11,18 @@
 <body>
 	<div class="container" ng-controller="AppCtrl">
 	<!--<h1>Horse Form Records (Recent 3 seasons) - AMAZING ALWAYS</h1>-->
-		<span ng-if="!horces">Loading...</span>
-		<table class="table" ng-if="horces">
+		<span ng-if="!horses">Loading...</span>
+		<table class="table" ng-if="horses">
 			<thead>
 				<tr>
 					<th>Place</th>
+					<th>Horse no.</th>
+					<th>Horse</th>
 					<th>Jockey code</th>
 					<th>Trainer code</th>
 					<th>Actualwt</th>
 					<th>Declarhorsewt</th>
+					<th>Draw</th>
 					<th>lbw</th>
 					<th>Running position</th>
 					<th>Finish time</th>
@@ -27,16 +30,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="horce in horces">
-					<td>{{horce.row.td.place}}</td>
-					<td><a href="http://www.hkjc.com/english/racing/{{horce.row.td.jockeycodeurl}}" target="_blank">{{horce.row.td.jockeycode}}</a></td>
-					<td><a href="http://www.hkjc.com/english/racing/{{horce.row.td.trainercodeurl}}" target="_blank">{{horce.row.td.trainercode}}</a></td>
-					<td>{{horce.row.td.actualwt}}</td>
-					<td>{{horce.row.td.declarhorsewt}}</td>
-					<td>{{horce.row.td.lbw}}</td>
-					<td>{{horce.row.td.runningposition}}</td>
-					<td>{{horce.row.td.finishtime}}</td>
-					<td>{{horce.row.td.winodds}}</td>
+				<tr ng-repeat="horse in horses ">
+					<td>{{horse.row.place}}</td>
+					<td>{{horse.row.horseno}}</td>
+					<td><a href="{{horse.row.horsecodeurl}}" target="_blank">{{horse.row.horsecode}}</a></td>
+					<td><a href="{{horse.row.jockeycodeurl}}" target="_blank">{{horse.row.jockeycode}}</a></td>
+					<td><a href="{{horse.row.trainercodeurl}}" target="_blank">{{horse.row.trainercode}}</a></td>
+					<td>{{horse.row.actualwt}}</td>
+					<td>{{horse.row.declarhorsewt}}</td>
+					<td>{{horse.row.draw}}</td>
+					<td>{{horse.row.lbw}}</td>
+					<td>{{horse.row.runningposition}}</td>
+					<td>{{horse.row.finishtime}}</td>
+					<td>{{horse.row.winodds}}</td>
 				</tr>
 			</tbody>
 		</table>
