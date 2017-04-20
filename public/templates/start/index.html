@@ -1,0 +1,37 @@
+
+<span ng-if="!horses">Loading...</span>
+
+<table class="table" ng-if="horses">
+    <thead>
+    <tr>
+        <th>Place</th>
+        <th>Horse no.</th>
+        <th>Horse</th>
+        <th>Jockey code</th>
+        <th>Trainer code</th>
+        <th>Actualwt</th>
+        <th>Declarhorsewt</th>
+        <th>Draw</th>
+        <th>lbw</th>
+        <th>Running position</th>
+        <th>Finish time</th>
+        <th>Win odds</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="horse in horses ">
+        <td>{{horse.row.place}}</td>
+        <td>{{horse.row.horseno}}</td>
+        <td><a href="{{horse.row.horsecodeurl}}" target="_blank">{{horse.row.horsecode}}</a></td>
+        <td><a href="{{horse.row.jockeycodeurl}}" target="_blank">{{horse.row.jockeycode}}</a></td>
+        <td><a href="{{horse.row.trainercodeurl}}" target="_blank">{{horse.row.trainercode}}</a></td>
+        <td>{{horse.row.actualwt}}</td>
+        <td>{{horse.row.declarhorsewt}}</td>
+        <td>{{horse.row.draw}}</td>
+        <td>{{horse.row.lbw}}</td>
+        <td>{{horse.row.runningposition}}</td>
+        <td>{{horse.row.finishtime}}</td>
+        <td>{{horse.row.winodds}}</td>
+    </tr>
+    </tbody>
+</table>

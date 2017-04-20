@@ -58,7 +58,7 @@ app.get('/horselist', function(req, res){
         var $ = cheerio.load(html);
 
         var rowCount = $('.tableBorder.trBgBlue.tdAlignC.number12.draggable tbody ').children().length;
-        console.log(rowCount);
+        //console.log(rowCount);
 
         var tableName = '.tableBorder.trBgBlue.tdAlignC.number12.draggable tbody';
 
@@ -121,12 +121,61 @@ app.get('/horselist', function(req, res){
             }
 
         });
+    });
+});
 
-        // var page =  $('.bigborder').children().eq(1).text();
+app.post('/newrequest', function(req, res){
+    var url =  req.body.url;
+    //console.log(url);
+    var newarray = [];
+    request('' + url, function(err,resp, html){
+        var $ = cheerio.load(html);
 
-        //console.log(season);
+        var rowCount = $('.tableBorder.trBgBlue.tdAlignC.number12.draggable tbody ').children().length;
+
+        var tableName = '.tableBorder.trBgBlue.tdAlignC.number12.draggable tbody';
+        for(var i = 0; i<= rowCount; i++) {
+            place = $(tableName).children().eq(i).children().eq(0).text();
+            horseno = $(tableName).children().eq(i).children().eq(1).text();
+            horsecode = $(tableName).children().eq(i).children().eq(2).text();
+            horsecodeurl =  $(tableName).children().eq(i).children().eq(2).children().attr('href');
+            jockeycode = $(tableName).children().eq(i).children().eq(3).text();
+            jockeycodeurl = $(tableName).children().eq(i).children().eq(3).children().attr('href');
+            trainercode = $(tableName).children().eq(i).children().eq(4).text();
+            trainercodeurl = $(tableName).children().eq(i).children().eq(4).children().attr('href');
+            actualwt = $(tableName).children().eq(i).children().eq(5).text();
+            declarhorsewt = $(tableName).children().eq(i).children().eq(6).text();
+            draw = $(tableName).children().eq(i).children().eq(7).text();
+            lbw = $(tableName).children().eq(i).children().eq(8).text();
+            runningposition = $(tableName).children().eq(i).children().eq(9).text();
+            finishtime = $(tableName).children().eq(i).children().eq(10).text();
+            winodds = $(tableName).children().eq(i).children().eq(11).text();
+
+           var  newuser =   {
+                    place: place,
+                    horseno: horseno,
+                    horsecode: horsecode,
+                    horsecodeurl: horsecodeurl,
+                    jockeycode: jockeycode,
+                    jockeycodeurl: jockeycodeurl,
+                    trainercode: trainercode,
+                    trainercodeurl: trainercodeurl,
+                    actualwt: actualwt,
+                    declarhorsewt: declarhorsewt,
+                    draw: draw,
+                    lbw: lbw,
+                    runningposition: runningposition,
+                    finishtime: finishtime,
+                    winodds: winodds
+
+            };
+            newarray.push(newuser);
+        }
+
+            res.json(newarray)
 
     });
+
 
 });
 

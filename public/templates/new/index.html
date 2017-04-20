@@ -1,0 +1,46 @@
+<div class="container" ng-controller="AppCtrl">
+    <div class="form-group">
+        <label for="usr">URL:</label>
+        <input type="text" class="form-control" id="usr" ng-model="url_address">
+    </div>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary" ng-click="findTable()">Find</button>
+    </div>
+    <span ng-if="newLoding">Loading...</span>
+    <div id="download-json" ></div>
+
+    <table class="table" ng-if="!newLoding && newHorses">
+        <thead>
+        <tr>
+            <th>Place</th>
+            <th>Horse no.</th>
+            <th>Horse</th>
+            <th>Jockey code</th>
+            <th>Trainer code</th>
+            <th>Actualwt</th>
+            <th>Declarhorsewt</th>
+            <th>Draw</th>
+            <th>lbw</th>
+            <th>Running position</th>
+            <th>Finish time</th>
+            <th>Win odds</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="horse in newHorses ">
+            <td>{{horse.place}}</td>
+            <td>{{horse.horseno}}</td>
+            <td><a href="{{horse.horsecodeurl}}" target="_blank">{{horse.horsecode}}</a></td>
+            <td><a href="{{horse.jockeycodeurl}}" target="_blank">{{horse.jockeycode}}</a></td>
+            <td><a href="{{horse.trainercodeurl}}" target="_blank">{{horse.trainercode}}</a></td>
+            <td>{{horse.actualwt}}</td>
+            <td>{{horse.declarhorsewt}}</td>
+            <td>{{horse.draw}}</td>
+            <td>{{horse.lbw}}</td>
+            <td>{{horse.runningposition}}</td>
+            <td>{{horse.finishtime}}</td>
+            <td>{{horse.winodds}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

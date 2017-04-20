@@ -7,49 +7,17 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 </head>
 <body>
 	<div class="container" ng-controller="AppCtrl">
 	<!--<h1>Horse Form Records (Recent 3 seasons) - AMAZING ALWAYS</h1>-->
-		<span ng-if="!horses">Loading...</span>
-		<table class="table" ng-if="horses">
-			<thead>
-				<tr>
-					<th>Place</th>
-					<th>Horse no.</th>
-					<th>Horse</th>
-					<th>Jockey code</th>
-					<th>Trainer code</th>
-					<th>Actualwt</th>
-					<th>Declarhorsewt</th>
-					<th>Draw</th>
-					<th>lbw</th>
-					<th>Running position</th>
-					<th>Finish time</th>
-					<th>Win odds</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="horse in horses ">
-					<td>{{horse.row.place}}</td>
-					<td>{{horse.row.horseno}}</td>
-					<td><a href="{{horse.row.horsecodeurl}}" target="_blank">{{horse.row.horsecode}}</a></td>
-					<td><a href="{{horse.row.jockeycodeurl}}" target="_blank">{{horse.row.jockeycode}}</a></td>
-					<td><a href="{{horse.row.trainercodeurl}}" target="_blank">{{horse.row.trainercode}}</a></td>
-					<td>{{horse.row.actualwt}}</td>
-					<td>{{horse.row.declarhorsewt}}</td>
-					<td>{{horse.row.draw}}</td>
-					<td>{{horse.row.lbw}}</td>
-					<td>{{horse.row.runningposition}}</td>
-					<td>{{horse.row.finishtime}}</td>
-					<td>{{horse.row.winodds}}</td>
-				</tr>
-			</tbody>
-		</table>
+		<div ng-view></div>
 	</div>
 
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 <script type="text/javascript" src="controllers/controller.js"></script>
 </body>
 </html>
